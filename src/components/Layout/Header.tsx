@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import styled from 'styled-components'
 
 import mealsImage from '../../assets/meals.jpg'
-import { transform } from 'typescript'
+import HeaderCartButton from './HeaderCartButton'
 
 const HeaderProp = styled.header`
   position: fixed;
@@ -32,7 +32,7 @@ const Header = (props: any) => {
     <Fragment>
       <HeaderProp>
         <h1>React Meals</h1>
-        <button>Cart</button>
+        <HeaderCartButton />
       </HeaderProp>
       <ImageSection>
         <img

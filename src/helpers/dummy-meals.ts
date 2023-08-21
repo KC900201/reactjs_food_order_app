@@ -1,4 +1,11 @@
-export const DUMMY_MEALS = [
+export interface MealsInterface {
+  id: string,
+  name: string,
+  description: string,
+  price: number,
+}
+
+export const DUMMY_MEALS: MealsInterface[] = [
   {
     id: 'm1',
     name: 'Sushi',

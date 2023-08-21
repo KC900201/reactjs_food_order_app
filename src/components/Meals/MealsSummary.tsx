@@ -18,8 +18,13 @@ const SummarySection = styles.section`
 const MealsSummary: React.FC = () => {
   return (
     <SummarySection>
-      <h2 style={{ fontSize: '2rem', marginTop: '0' }}>Deli</h2>
-      <p>Haha</p>
+      <h2 style={{ fontSize: '2rem', marginTop: '0' }}>
+        Delicious Food, Delivered to You
+      </h2>
+      <p>
+        Choose your favorite meal from our broad selection of available menus
+        and enjoy a delicious lunch or dinner at home.
+      </p>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga error
         veniam architecto ipsam delectus illo eos saepe omnis corporis quas sit

@@ -22,7 +22,7 @@ const MealsSection = styles.section`
   }
 `
 
-const MealsList = styles.ul`
+const MealsListUL = styles.ul`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -33,7 +33,7 @@ const AvailableMeals = () => {
 
   return (
     <MealsSection>
-      <MealsList>{mealsList}</MealsList>
+      <MealsListUL>{mealsList}</MealsListUL>
     </MealsSection>
   )
 }

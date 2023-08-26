@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from 'styled-components'
+import MealItemForm from '../MealItemForm/MealItemForm'
 import type { MealsInterface } from '../../../helpers/dummy-meals'
 
 const MealList = styles.li`
@@ -32,7 +33,9 @@ const MealItem: React.FC<MealItemProps> = (props: MealItemProps) => {
         <DescriptionDiv>{props?.description}</DescriptionDiv>
         <PriceDiv>{price}</PriceDiv>
       </div>
-      <div></div>
+      <div>
+        <MealItemForm key={props.key} />
+      </div>
     </MealList>
   )
 }

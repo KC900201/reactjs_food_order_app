@@ -27,12 +27,12 @@ const ImageSection = styled.div`
   overflow: hidden;
 `
 
-const Header = (props: any) => {
+const Header = ({ showCart }: { showCart: () => void }) => {
   return (
     <Fragment>
       <HeaderProp>
         <h1>React Meals</h1>
-        <HeaderCartButton />
+        <HeaderCartButton showCart={showCart} />
       </HeaderProp>
       <ImageSection>
         <img

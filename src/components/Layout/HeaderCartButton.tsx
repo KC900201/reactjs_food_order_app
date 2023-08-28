@@ -46,9 +46,13 @@ const BadgeSpan = styles.span`
   }
 `
 
-const HeaderCartButton = (props: any) => {
+type headCartButtonProps = {
+  showCart: () => void
+}
+
+const HeaderCartButton = ({ showCart }: headCartButtonProps) => {
   return (
-    <ButtonWrapper>
+    <ButtonWrapper onClick={showCart}>
       <IconSpan>
         <CartIcon />
       </IconSpan>

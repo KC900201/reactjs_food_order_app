@@ -33,7 +33,7 @@ const FormWrapper = styled.form`
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
-  gap: 1rem;
+  gap: 0.5rem;
 `
 
 const MealItemForm: React.FC<FormProps> = ({ key }: FormProps) => {

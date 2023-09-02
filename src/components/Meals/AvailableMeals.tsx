@@ -34,7 +34,7 @@ const MealsListUL = styles.ul`
 const AvailableMeals = () => {
   const mealsList = DUMMY_MEALS.map((meal) => (
     <MealItem
-      key={meal.id}
+      key={`meal-item-${meal.id}`}
       id={meal.id}
       name={meal.name}
       description={meal.description}

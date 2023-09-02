@@ -2,6 +2,7 @@ import React from 'react'
 import styles from 'styled-components'
 import MealItemForm from '../MealItemForm/MealItemForm'
 import type { MealsInterface } from '../../../helpers/dummy-meals'
+import { CartContext } from '../../../store/CartContext'
 
 const MealList = styles.li`
   display: flex;
@@ -19,22 +20,34 @@ const PriceDiv = styles.div`
   color: #ad5502;
   font-size: 1.25rem;
 `
-type MealItemProps = Required<MealsInterface> & {
-  key: string
-}
 
-const MealItem: React.FC<MealItemProps> = (props: MealItemProps) => {
-  const price = `$${props.price.toFixed(2)}`
+const MealItem: React.FC<MealsInterface> = ({
+  id,
+  name,
+  price,
+  description,
+}: MealsInterface) => {
+  const cartContext = React.useContext(CartContext)
+  const realPrice = `$${price.toFixed(2)}`
+
+  const addItemToCartHandler = (amount: number) => {
+    cartContext.addItem({
+      id: id,
+      name: name,
+      amount: amount,
+      price: realPrice,
+    })
+  }
 
   return (
     <MealList>
       <div>
-        <h3 style={{ margin: '0 0 0.25rem 0' }}>{props?.name}</h3>
-        <DescriptionDiv>{props?.description}</DescriptionDiv>
+        <h3 style={{ margin: '0 0 0.25rem 0' }}>{name}</h3>
+        <DescriptionDiv>{description}</DescriptionDiv>
         <PriceDiv>{price}</PriceDiv>
       </div>
       <div>
-        <MealItemForm key={props.key} />
+        <MealItemForm id={id} onAddToCart={addItemToCartHandler} />
       </div>
     </MealList>
   )

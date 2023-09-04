@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-type InputProps = {
-  labelString: string
-  input: React.InputHTMLAttributes<HTMLInputElement>
-}
+// type InputProps = {
+//   labelString: string
+//   input: React.InputHTMLAttributes<HTMLInputElement>
+// }
 
 const InputSection = styled.section`
   display: flex;
@@ -25,14 +25,14 @@ const InputComponent = styled.input`
   padding-left: 0.5rem;
 `
 
-const Input: React.FC<InputProps> = ({ labelString, input }: InputProps) => {
+const Input = React.forwardRef((props: any, ref) => {
   return (
     <InputSection>
-      <Label htmlFor={input.id}>{labelString}</Label>
+      <Label htmlFor={props.input.id}>{props.label}</Label>
 
-      <InputComponent id={input.id} {...input} />
+      <InputComponent ref={ref} {...props.input} />
     </InputSection>
   )
-}
+})
 
 export default Input

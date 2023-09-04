@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styles from 'styled-components'
 import CartIcon from '../Cart/CartIcon'
+import { CartContext } from '../../store/CartContext'
 
 const ButtonWrapper = styles.button`
   cursor: pointer;
@@ -51,13 +52,18 @@ type headCartButtonProps = {
 }
 
 const HeaderCartButton = ({ showCart }: headCartButtonProps) => {
+  const cartContext = React.useContext(CartContext)
+  const numberOfCartItems = cartContext.items.reduce((curNumber, i) => {
+    return i.amount ? curNumber + i.amount : curNumber
+  }, 0)
+
   return (
     <ButtonWrapper onClick={showCart}>
       <IconSpan>
         <CartIcon />
       </IconSpan>
       <span>Your Cart</span>
-      <BadgeSpan>3</BadgeSpan>
+      <BadgeSpan>{numberOfCartItems}</BadgeSpan>
     </ButtonWrapper>
   )
 }

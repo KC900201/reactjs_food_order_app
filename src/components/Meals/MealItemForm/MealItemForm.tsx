@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Input from '../../UI/Input'
 
 type FormProps = {
-  key: string
+  id: string
+  onAddToCart: (amount: number) => void
 }
 
 const FormButton = styled.button`
@@ -36,21 +37,47 @@ const FormWrapper = styled.form`
   gap: 0.5rem;
 `
 
-const MealItemForm: React.FC<FormProps> = ({ key }: FormProps) => {
+const MealItemForm: React.FC<FormProps> = ({ id, onAddToCart }: FormProps) => {
+  const amountInputRef = React.useRef({ value: '' })
+  const [isAmountValid, setAmountValid] = React.useState(true)
+
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event?.preventDefault()
+
+    const enteredAmount =
+      amountInputRef.current && typeof amountInputRef.current !== 'undefined'
+        ? amountInputRef.current.value
+        : undefined
+    const enteredAmountNumber = enteredAmount ? +enteredAmount : 0
+
+    if (
+      enteredAmount?.trim().length === 0 ||
+      enteredAmountNumber < 1 ||
+      enteredAmountNumber > 5
+    ) {
+      setAmountValid(false)
+      return
+    }
+
+    onAddToCart(enteredAmountNumber)
+  }
+
   return (
-    <FormWrapper>
+    <FormWrapper onSubmit={submitHandler}>
       <Input
-        labelString="Amount"
+        label="Amount"
         input={{
-          id: `amount-${key}`,
+          id: `amount-${id}`,
           type: 'number',
           min: '1',
           max: '5',
           step: '1',
           defaultValue: '1',
         }}
+        ref={amountInputRef}
       />
       <FormButton>+ Add</FormButton>
+      {!isAmountValid && <p>Please enter a valid amount (1-5)</p>}
     </FormWrapper>
   )
 }

@@ -28,8 +28,9 @@ const MealItem: React.FC<MealsInterface> = ({
   description,
 }: MealsInterface) => {
   const cartContext = React.useContext(CartContext)
-  const realPrice = `$${price.toFixed(2)}`
+  const realPrice = parseInt(price.toFixed(2))
 
+  // WIP (fix)
   const addItemToCartHandler = (amount: number) => {
     cartContext.addItem({
       id: id,

@@ -1,6 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import Modal from '../UI/Modal'
+import { CartContext } from '../../store/CartContext'
+import { MealsInterface } from '../../helpers/dummy-meals'
+import CartItem from './CartItem'
 
 type cartProps = {
   hideCart: () => void
@@ -41,29 +44,30 @@ const ActionSection = styled.section`
   }
 `
 
-const CartList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-height: 20rem;
-  overflow: auto;
-`
-
-const CartItems = () => (
-  <CartList>
-    {[{ id: 'cl', name: 'Sushi', amount: 2, price: 12.09 }].map((item) => (
-      <li key={item.id}>{item.name}</li>
-    ))}
-  </CartList>
-)
-
 const Cart: React.FC<cartProps> = ({ hideCart }: cartProps) => {
+  const { totalAmount, items, removeItem, addItem } =
+    React.useContext(CartContext)
+
+  const totalItemAmount = totalAmount.toFixed(2)
+
+  const cartRemoveItemHandler = (id: string) => {
+    removeItem(id)
+  }
+
+  const cartAddItemHandler = (item: MealsInterface) => {
+    addItem(item)
+  }
+
   return (
     <Modal>
-      <CartItems />
+      <CartItem
+        items={items}
+        onAdd={cartAddItemHandler}
+        onRemove={cartRemoveItemHandler}
+      />
       <TotalSection>
         <span>Total Amount</span>
-        <span>22.22</span>
+        <span>{totalItemAmount}</span>
       </TotalSection>
       <ActionSection>
         <button style={{ color: '#8a2b06' }} onClick={hideCart}>

@@ -17,11 +17,7 @@ const FormButton = styled.button`
   border-radius: 20px;
   font-weight: bold;
 
-  &:active {
-    background-color: #641e03;
-    border-color: #641e03;
-  }
-
+  &:active,
   &:hover {
     background-color: #641e03;
     border-color: #641e03;

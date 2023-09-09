@@ -1,11 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-// type InputProps = {
-//   labelString: string
-//   input: React.InputHTMLAttributes<HTMLInputElement>
-// }
-
 const InputSection = styled.section`
   display: flex;
   align-items: center;
@@ -22,9 +17,10 @@ const InputComponent = styled.input`
   border-radius: 5px;
   border: 1px solid #ccc;
   font: inherit;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 `
 
+// May have to define the props in future
 const Input = React.forwardRef((props: any, ref) => {
   return (
     <InputSection>
